@@ -1,10 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd ">
 
-	<bean id="msgService" class="com.cheer.spring.helloworld.MessageService"></bean>
-	<bean id="msgPrinter" class="com.cheer.spring.helloworld.MessagePrinter">
+	<!-- 指定外部properties文件 -->
+	<context:property-placeholder location="classpath:spring/db.properties" />
+
+	<bean id="msgService" class="com.cheer.spring.helloworld.MessageService"
+		scope="singleton">
+		<!-- 为message初始化 -->
+		<property name="message" value="helloworld...."></property>
+		<property name="msgs">
+			<list>
+				<value>《习近平谈治国理政》第二卷中英文版发行</value>
+				<value>众人眼里的习近平:腐败分子克星 全国人民的福星</value>
+				<value>李克强作批示同默克尔通电话|俞正声会见台湾代表</value>
+			</list>
+		</property>
+
+		<property name="config">
+			<map>
+				<entry key="username" value="${jdbc.username}">
+				</entry>
+				<entry key="password" value="${jdbc.password}">
+				</entry>
+				<entry key="url" value="${jdbc.url}">
+				</entry>
+				<entry key="driver" value="${jdbc.driverClassName}">
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+	<bean id="msgPrinter" class="com.cheer.spring.helloworld.MessagePrinter"
+		scope="prototype">
+		<!-- 通过setter方法为msgService属性赋值，该值依赖id为msgService的bean -->
 		<property name="msgService" ref="msgService"></property>
 	</bean>
 </beans>

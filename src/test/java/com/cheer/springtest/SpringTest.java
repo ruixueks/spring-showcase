@@ -1,10 +1,13 @@
 package com.cheer.springtest;
+import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.cheer.spring.helloworld.MessagePrinter;
 import com.cheer.spring.helloworld.MessageService;
+import com.cheer.spring.ioc.ex01.Container;
+import com.cheer.spring.ioc.ex01.ReportService;
 
 /*
  * 文件名：SpringTest.java
@@ -16,6 +19,15 @@ import com.cheer.spring.helloworld.MessageService;
 
 public class SpringTest
 {
+    @Test
+    public void testIoc()
+    {
+        Container container = new Container();
+        ReportService reportService = (ReportService)container.getComponent("reportService");
+        Assert.assertNotNull(reportService);
+        reportService.generateMonthlyReport();
+    }
+    
     @Test
     public void testOldStyle()
     {
