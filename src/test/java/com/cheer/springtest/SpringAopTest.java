@@ -26,6 +26,6 @@ public class SpringAopTest
     @Test
     public void aopTest()
     {
-        calc.add(1.0, 12.0);
+        System.out.println(calc.add(1.0, 12.0));
     }
 }
