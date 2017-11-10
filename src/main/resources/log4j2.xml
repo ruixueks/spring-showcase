@@ -23,11 +23,11 @@
 
 	<Loggers>
 		<!-- Application Loggers -->
-		<Logger name="com.cheer" level="debug" additivity="false">
+		<Logger name="com.cheer" level="info" additivity="false">
 			<AppenderRef ref="console"></AppenderRef>
 		</Logger>
 		
-		<Logger name="org.springframework" level="debug" additivity="false">
+		<Logger name="org.springframework" level="info" additivity="false">
 			<AppenderRef ref="console"></AppenderRef>
 		</Logger>
 		
